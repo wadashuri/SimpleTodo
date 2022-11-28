@@ -18,7 +18,7 @@ const App: React.VFC = () => {
     return (
         <QueryClientProvider client={queryClient}>
             <Router />
-            <ToastContainer hideProgressBar="true" />
+            <ToastContainer hideProgressBar={true} />
         </QueryClientProvider>
     );
 };
