@@ -1,0 +1,49 @@
+version: '3'
+
+services:
+  web:
+    build: './docker'
+    ports:
+      - ${IP}:80:80
+  #  privileged: true
+    volumes:
+      - ./server:/var/www/html
+      - ./docker/apache/000-default.conf:/etc/apache2/sites-available/000-default.conf
+
+  db:
+    image: mysql:5.7.36
+    platform: 'linux/amd64'
+    environment:
+      MYSQL_ALLOW_EMPTY_PASSWORD: "yes"
+      MYSQL_ROOT_PASSWORD: root
+      MYSQL_DATABASE: local_db
+      MYSQL_USER: mysqluser
+      MYSQL_PASSWORD: mysqlpassword
+      TZ: 'Asia/Tokyo'
+    command: mysqld --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci
+    volumes:
+      - ./docker/db/data:/var/lib/mysql
+      # - ./docker/db/my.cnf:/etc/mysql/conf.d/my.cnf
+      # - ./docker/db/sql:/docker-entrypoint-initdb.d
+    ports:
+      - ${IP}:3306:3306
+
+  phpmyadmin:
+    image: phpmyadmin/phpmyadmin
+    environment:
+      - PMA_ARBITRARY=1
+      - PMA_HOSTS=db
+      - PMA_USER=mysqluser
+      - PMA_PASSWORD=mysqlpassword
+    ports:
+      - ${IP}:8080:80
+
+  node:
+    build:
+      context: .
+      dockerfile: ./node/Dockerfile
+    tty: true
+    # restart: always
+    volumes:
+      - ./server:/app
+      - /app/node_modules
