@@ -15,6 +15,6 @@ class PostTableSeeder extends Seeder
      */
     public function run()
     {
-        // Post::factory(100)->has(Category::factory(20)->count(15))->create();
+        Post::factory(10)->create();
     }
 }

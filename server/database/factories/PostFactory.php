@@ -17,10 +17,8 @@ class PostFactory extends Factory
         $text = $this->faker->realText($maxNbChars = 50, $indexSize = 2);
 
         return [
-            'user_id' => $this->faker->numberBetween(1, 50),
             'title' => $this->faker->text(5),
-            'content' => 'コンテンツ',
-            'comment' => $text,
+            'is_done' => $this->faker->boolean(),
             'created_at'=> $datetime,
             'updated_at'=> $datetime
         ];

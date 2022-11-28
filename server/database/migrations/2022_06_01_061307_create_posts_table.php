@@ -15,11 +15,8 @@ class CreatePostsTable extends Migration
     {
         Schema::create('posts', function (Blueprint $table) {
             $table->id();
-            $table->foreignId('user_id')->constrained()->cascadeOnDelete();
             $table->string('title')->comment('タイトル');
-            $table->text('content')->comment('コンテンツ');
-            $table->text('comment')->comment('コメント');
-            $table->boolean('is_done')->default(true);
+            $table->boolean('is_done')->default(false);
             $table->timestamps();
         });
     }
@@ -32,7 +29,6 @@ class CreatePostsTable extends Migration
     public function down()
     {
         Schema::table('posts', function (Blueprint $table) {
-            $table->dropForeign(['user_id']);
             $table->dropIfExists('posts');
         });
     }
