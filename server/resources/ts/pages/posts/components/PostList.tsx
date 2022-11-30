@@ -33,33 +33,6 @@ const PostList: React.VFC = () => {
                         </form>
                         <button className="btn">更新</button>
                     </li>
-                    <li className="done">
-                        <label className="checkbox-label">
-                            <input type="checkbox" className="checkbox-input" />
-                        </label>
-                        <div>
-                            <span>実行したTODO</span>
-                        </div>
-                        <button className="btn is-delete">削除</button>
-                    </li>
-                    <li>
-                        <label className="checkbox-label">
-                            <input type="checkbox" className="checkbox-input" />
-                        </label>
-                        <div>
-                            <span>ゴミ捨て</span>
-                        </div>
-                        <button className="btn is-delete">削除</button>
-                    </li>
-                    <li>
-                        <label className="checkbox-label">
-                            <input type="checkbox" className="checkbox-input" />
-                        </label>
-                        <div>
-                            <span>掃除</span>
-                        </div>
-                        <button className="btn is-delete">削除</button>
-                    </li>
                 </ul>
             </div>
         </>
