@@ -20,19 +20,6 @@ const PostList: React.VFC = () => {
                     {posts.map((post) => (
                         <PostItem key={post.id} post={post} />
                     ))}
-                    <li>
-                        <label className="checkbox-label">
-                            <input type="checkbox" className="checkbox-input" />
-                        </label>
-                        <form>
-                            <input
-                                type="text"
-                                className="input"
-                                defaultValue="編集中のTODO"
-                            />
-                        </form>
-                        <button className="btn">更新</button>
-                    </li>
                 </ul>
             </div>
         </>
