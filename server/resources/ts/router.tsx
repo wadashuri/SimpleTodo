@@ -13,7 +13,7 @@ const Router = () => {
                     <li>
                         <Link to="/">ホーム</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/help">ヘルプ</Link>
                     </li>
                     <li>
@@ -21,11 +21,11 @@ const Router = () => {
                     </li>
                     <li>
                         <span>ログアウト</span>
-                    </li>
+                    </li> */}
                 </ul>
             </header>
             <Switch>
-                <Route path="/help">
+                {/* <Route path="/help">
                     <HelpPage />
                 </Route>
                 <Route path="/login">
@@ -33,7 +33,7 @@ const Router = () => {
                 </Route>
                 <Route path="/">
                     <PostPage />
-                </Route>
+                </Route> */}
             </Switch>
         </BrowserRouter>
     );
