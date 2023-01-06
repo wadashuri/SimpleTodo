@@ -13,7 +13,7 @@ const Router = () => {
                     <li>
                         <Link to="/">ホーム</Link>
                     </li>
-                    <li>
+                    {/* <li>
                         <Link to="/help">ヘルプ</Link>
                     </li>
                     <li>
@@ -21,7 +21,7 @@ const Router = () => {
                     </li>
                     <li>
                         <span>ログアウト</span>
-                    </li>
+                    </li> */}
                 </ul>
             </header>
             <Switch>
