@@ -3,6 +3,7 @@ import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
 import PostPage from "./pages/posts";
 import LoginPage from "./pages/login";
 import HelpPage from "./pages/help";
+import CalendarPage from "./pages/calendar";
 
 const Router = () => {
     const title: string = "hello word!!";
@@ -13,7 +14,10 @@ const Router = () => {
                     <li>
                         <Link to="/">ホーム</Link>
                     </li>
-                    {/* <li>
+                    <li>
+                        <Link to="/calendar">カレンダー</Link>
+                    </li>
+                    <li>
                         <Link to="/help">ヘルプ</Link>
                     </li>
                     <li>
@@ -21,7 +25,7 @@ const Router = () => {
                     </li>
                     <li>
                         <span>ログアウト</span>
-                    </li> */}
+                    </li>
                 </ul>
             </header>
             <Switch>
@@ -30,6 +34,9 @@ const Router = () => {
                 </Route>
                 <Route path="/login">
                     <LoginPage />
+                </Route>
+                <Route path="/calendar">
+                    <CalendarPage />
                 </Route>
                 <Route path="/">
                     <PostPage />
