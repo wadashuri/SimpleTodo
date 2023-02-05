@@ -2540,23 +2540,34 @@ var CalendarPage = function CalendarPage() {
       left: 0,
       width: "100%",
       height: "100%",
-      zIndex: 1000
+      zIndex: 1000,
+      display: "flex",
+      alignItems: "center",
+      justifyContent: "center"
     }
   }, react_1["default"].createElement("div", {
     style: {
       backgroundColor: "white",
-      position: "fixed",
-      top: "30%",
-      left: "40%",
       width: "400px",
       height: "300px",
-      zIndex: 2000
+      zIndex: 2000,
+      padding: "20px",
+      borderRadius: "10px",
+      boxShadow: "0px 0px 10px rgba(0, 0, 0, 0.3)"
     }
   }, react_1["default"].createElement("h2", null, "\u30C6\u30AD\u30B9\u30C8\u30A8\u30EA\u30A2"), react_1["default"].createElement("textarea", {
     value: inputTitle,
-    onChange: handleInputTitle
+    onChange: handleInputTitle,
+    style: {
+      width: "100%",
+      height: "100px",
+      marginBottom: "20px"
+    }
   }), react_1["default"].createElement("select", {
-    onChange: handleColor
+    onChange: handleColor,
+    style: {
+      marginBottom: "20px"
+    }
   }, react_1["default"].createElement("option", {
     value: "#3f51b5"
   }, "\u9752"), react_1["default"].createElement("option", {
@@ -2566,12 +2577,21 @@ var CalendarPage = function CalendarPage() {
   }, "\u7DD1"), react_1["default"].createElement("option", {
     value: "#e91e63"
   }, "\u30D4\u30F3\u30AF")), isEditing && react_1["default"].createElement("button", {
-    onClick: handleDelete
+    onClick: handleDelete,
+    style: {
+      marginRight: "10px"
+    }
   }, "\u524A\u9664"), react_1["default"].createElement("button", {
-    onClick: handleSubmit
+    onClick: handleSubmit,
+    style: {
+      marginRight: "10px"
+    }
   }, "\u767B\u9332"), react_1["default"].createElement("button", {
     onClick: function onClick() {
       return setShowModal(false);
+    },
+    style: {
+      backgroundColor: "#ddd"
     }
   }, "\u30AD\u30E3\u30F3\u30BB\u30EB"))), react_1["default"].createElement(react_2["default"], {
     plugins: [daygrid_1["default"], interaction_1["default"]],
@@ -2608,7 +2628,7 @@ var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/r
 var HelpPage = function HelpPage() {
   return react_1["default"].createElement("div", {
     className: 'align-center'
-  }, react_1["default"].createElement("h1", null, "\u30D8\u30EB\u30D7"), react_1["default"].createElement("p", null, "\u4F7F\u3044\u65B9\u3092\u89E3\u8AAC\u3057\u307E\u3059", react_1["default"].createElement("br", null), "\u3053\u306E\u30B5\u30A4\u30C8\u306F\u30ED\u30B0\u30A4\u30F3\u304C\u5FC5\u8981\u3067\u3059"));
+  }, react_1["default"].createElement("h1", null, "\u30D8\u30EB\u30D7"), react_1["default"].createElement("p", null, "\u4F7F\u3044\u65B9\u3092\u89E3\u8AAC\u3057\u307E\u3059", react_1["default"].createElement("br", null), "\u3053\u306E\u30B5\u30A4\u30C8\u306F\u30ED\u30B0\u30A4\u30F3\u304C\u5FC5\u8981\u3067\u3059\u304C", react_1["default"].createElement("br", null), "\u4ECA\u306F\u30C6\u30B9\u30C8\u6BB5\u968E\u306A\u306E\u3067\u3042\u308A\u307E\u305B\u3093\u3002", react_1["default"].createElement("br", null), "\u597D\u304D\u306A\u6587\u5B57\u3092\u6253\u3061\u8FBC\u3093\u3067\u904A\u3093\u3067\u3044\u305F\u3060\u3044\u3066\u69CB\u3044\u307E\u305B\u3093"));
 };
 
 exports["default"] = HelpPage;
