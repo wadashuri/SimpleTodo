@@ -119,7 +119,7 @@ const CalendarPage: React.VFC = () => {
     width: "100%",
     height: "100px",
     marginBottom: "20px",
-    fontSize: "14px"
+    fontSize: "16px"
     }}
     ></textarea>
     <select onChange={handleColor} style={{ marginBottom: "20px" }}>

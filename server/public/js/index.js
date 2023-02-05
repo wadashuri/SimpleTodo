@@ -2562,7 +2562,7 @@ var CalendarPage = function CalendarPage() {
       width: "100%",
       height: "100px",
       marginBottom: "20px",
-      fontSize: "14px"
+      fontSize: "16px"
     }
   }), react_1["default"].createElement("select", {
     onChange: handleColor,
