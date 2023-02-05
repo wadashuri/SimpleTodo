@@ -2425,17 +2425,17 @@ var daygrid_1 = __importDefault(__webpack_require__(/*! @fullcalendar/daygrid */
 var interaction_1 = __importDefault(__webpack_require__(/*! @fullcalendar/interaction */ "./node_modules/@fullcalendar/interaction/index.cjs"));
 
 var CalendarPage = function CalendarPage() {
-  var _ref = (0, react_1.useState)(''),
+  var _ref = (0, react_1.useState)(""),
       _ref2 = _slicedToArray(_ref, 2),
       inputTitle = _ref2[0],
       setInputTitle = _ref2[1];
 
-  var _ref3 = (0, react_1.useState)(''),
+  var _ref3 = (0, react_1.useState)(""),
       _ref4 = _slicedToArray(_ref3, 2),
       inputStart = _ref4[0],
       setInputStart = _ref4[1];
 
-  var _ref5 = (0, react_1.useState)('#3f51b5'),
+  var _ref5 = (0, react_1.useState)("#3f51b5"),
       _ref6 = _slicedToArray(_ref5, 2),
       color = _ref6[0],
       setColor = _ref6[1];
@@ -2450,8 +2450,31 @@ var CalendarPage = function CalendarPage() {
       showModal = _ref10[0],
       setShowModal = _ref10[1];
 
+  var _ref11 = (0, react_1.useState)(false),
+      _ref12 = _slicedToArray(_ref11, 2),
+      isEditing = _ref12[0],
+      setIsEditing = _ref12[1];
+
+  var _ref13 = (0, react_1.useState)(null),
+      _ref14 = _slicedToArray(_ref13, 2),
+      selectedEvent = _ref14[0],
+      setSelectedEvent = _ref14[1];
+
   var handleDateClick = function handleDateClick(arg) {
-    setInputStart(arg.dateStr);
+    var event = myEvents.find(function (e) {
+      return e.start === arg.dateStr;
+    });
+
+    if (event) {
+      setSelectedEvent(event);
+      setInputTitle(event.title);
+      setInputStart(event.start);
+      setColor(event.color);
+      setIsEditing(true);
+    } else {
+      setInputStart(arg.dateStr);
+    }
+
     setShowModal(true);
   };
 
@@ -2459,41 +2482,92 @@ var CalendarPage = function CalendarPage() {
     setInputTitle(e.target.value);
   };
 
+  var handleColor = function handleColor(e) {
+    setColor(e.target.value);
+  };
+
   var handleSubmit = function handleSubmit() {
-    setMyEvents([].concat(_toConsumableArray(myEvents), [{
-      title: inputTitle,
-      start: inputStart,
-      color: color
-    }]));
+    if (isEditing) {
+      var newEvents = myEvents.map(function (e) {
+        if (e === selectedEvent) {
+          return {
+            title: inputTitle,
+            start: inputStart,
+            color: color
+          };
+        }
+
+        return e;
+      });
+      setMyEvents(newEvents);
+      setSelectedEvent(null);
+      setIsEditing(false);
+    } else {
+      setMyEvents([].concat(_toConsumableArray(myEvents), [{
+        title: inputTitle,
+        start: inputStart,
+        color: color
+      }]));
+    }
+
     setShowModal(false);
-    setInputTitle('');
-    setInputStart('');
+    setInputTitle("");
+    setInputStart("");
+    setColor("#3f51b5");
+  };
+
+  var handleDelete = function handleDelete() {
+    if (isEditing) {
+      var newEvents = myEvents.filter(function (e) {
+        return e !== selectedEvent;
+      });
+      setMyEvents(newEvents);
+      setSelectedEvent(null);
+      setIsEditing(false);
+    }
+
+    setShowModal(false);
+    setInputTitle("");
+    setInputStart("");
+    setColor("#3f51b5");
   };
 
   return react_1["default"].createElement("div", null, showModal && react_1["default"].createElement("div", {
     style: {
-      backgroundColor: 'rgba(0, 0, 0, 0.3)',
-      position: 'fixed',
+      backgroundColor: "rgba(0, 0, 0, 0.3)",
+      position: "fixed",
       top: 0,
       left: 0,
-      width: '100%',
-      height: '100%',
+      width: "100%",
+      height: "100%",
       zIndex: 1000
     }
   }, react_1["default"].createElement("div", {
     style: {
-      backgroundColor: 'white',
-      position: 'fixed',
-      top: '30%',
-      left: '40%',
-      width: '400px',
-      height: '300px',
+      backgroundColor: "white",
+      position: "fixed",
+      top: "30%",
+      left: "40%",
+      width: "400px",
+      height: "300px",
       zIndex: 2000
     }
   }, react_1["default"].createElement("h2", null, "\u30C6\u30AD\u30B9\u30C8\u30A8\u30EA\u30A2"), react_1["default"].createElement("textarea", {
     value: inputTitle,
     onChange: handleInputTitle
-  }), react_1["default"].createElement("button", {
+  }), react_1["default"].createElement("select", {
+    onChange: handleColor
+  }, react_1["default"].createElement("option", {
+    value: "#3f51b5"
+  }, "\u9752"), react_1["default"].createElement("option", {
+    value: "#ff5722"
+  }, "\u30AA\u30EC\u30F3\u30B8"), react_1["default"].createElement("option", {
+    value: "#4caf50"
+  }, "\u7DD1"), react_1["default"].createElement("option", {
+    value: "#e91e63"
+  }, "\u30D4\u30F3\u30AF")), isEditing && react_1["default"].createElement("button", {
+    onClick: handleDelete
+  }, "\u524A\u9664"), react_1["default"].createElement("button", {
     onClick: handleSubmit
   }, "\u767B\u9332"), react_1["default"].createElement("button", {
     onClick: function onClick() {
