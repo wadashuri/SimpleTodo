@@ -2548,8 +2548,9 @@ var CalendarPage = function CalendarPage() {
   }, react_1["default"].createElement("div", {
     style: {
       backgroundColor: "white",
-      width: "400px",
-      height: "300px",
+      width: "90%",
+      maxWidth: "400px",
+      height: "auto",
       zIndex: 2000,
       padding: "20px",
       borderRadius: "10px",
