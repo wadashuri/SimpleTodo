@@ -1,6 +1,7 @@
 <?php
 
 use Illuminate\Http\Request;
+use App\Http\Controllers\LoginController;
 use App\Http\Controllers\PostController;
 use Illuminate\Support\Facades\Route;
 
@@ -15,9 +16,15 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::post('login', [LoginController::class,'login']);
+Route::post('logout', [LoginController::class,'logout']);
+
+Route::group([
+    'middleware' => 'auth:sanctum'
+], function () {
 Route::apiResource('posts',PostController::class);
 Route::patch('posts/update_done/{post}', [PostController::class,'updateDone']);
-
-Route::middleware('auth:sanctum')->get('/user', function (Request $request) {
+Route::get('user', function (Request $request) {
     return $request->user();
+});
 });
