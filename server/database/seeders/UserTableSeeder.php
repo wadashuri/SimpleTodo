@@ -3,7 +3,7 @@
 namespace Database\Seeders;
 
 use Illuminate\Database\Seeder;
-use Illuminate\Support\Facades\DB;
+use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 
 class UserTableSeeder extends Seeder
@@ -15,13 +15,14 @@ class UserTableSeeder extends Seeder
      */
     public function run()
     {
-        DB::table('users')->insert([[
-            'name' => 'admin',
-            'email' => 'admin@example.com',
-            'email_verified_at' => now(),
-            'password' => Hash::make('admin'),
-            'created_at' => now(),
-        ]
-        ]);
+        User::factory(20)
+            ->sequence(
+                fn ($sequence) => [
+                    'name' => 'user' .($sequence->index + 1),
+                    'email' => 'user' .($sequence->index + 1). '@example.com',
+                    'password' => Hash::make('user' .($sequence->index + 1))
+                ],
+            )
+            ->create();
     }
 }

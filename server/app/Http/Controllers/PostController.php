@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index()
     {
-        return response()->json(Post::latest()->get());
+        return auth()->user()->posts()->latest()->get();
     }
 
     /**
@@ -24,6 +24,9 @@ class PostController extends Controller
      */
     public function store(postRequest $request)
     {
+        $request->merge([
+            "user_id" => auth()->user()->id
+        ]);
         $post = Post::create($request->all());
         
         return $post ? response()->json($post,201): response()->json([],500);
