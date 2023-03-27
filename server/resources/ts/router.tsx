@@ -1,51 +1,85 @@
 import React, { useEffect } from "react";
-import { BrowserRouter, Switch, Route, Link } from "react-router-dom";
+import { BrowserRouter, Switch, Route, Link,RouteProps ,Redirect} from "react-router-dom";
 import PostPage from "./pages/posts";
 import LoginPage from "./pages/login";
+import NotFoundPage from "./pages/error";
 import HelpPage from "./pages/help";
 import CalendarPage from "./pages/calendar";
-import { useLogout } from "./queries/AuthQuery";
+import { useLogout,useUser } from "./queries/AuthQuery";
+import { useAuth } from "./hooks/AuthContext"
 
 const Router = () => {
     const logout = useLogout()
+    const { isAuth, setIsAuth } = useAuth()
+    const { isLoading, data: authUser } = useUser()
     useEffect(() => {
-    }, []);
+        if(authUser) {
+            setIsAuth(true)
+        }
+    }, [authUser]);
+
+    const GuardRoute = (props: RouteProps) => {
+         if(!isAuth) return <Redirect to="/login" />
+         return <Route {...props} />
+    }
+
+    const LoginRoute = (props: RouteProps) => {
+        if(isAuth) return <Redirect to="/" />
+        return <Route {...props} />
+   }
+
+    const navgation = (
+        <header className="global-head">
+        <ul>
+            <li>
+                <Link to="/">タスク</Link>
+            </li>
+            <li>
+                <Link to="/calendar">カレンダー</Link>
+            </li>
+            <li>
+                <Link to="/help">ヘルプ</Link>
+            </li>
+            <li onClick={() => logout.mutate()}>
+                <span>ログアウト</span>
+            </li>
+        </ul>
+    </header>
+    )
+
+    const loginNavgation = (
+        <header className="global-head">
+        <ul>
+            <li>
+                <Link to="/help">ヘルプ</Link>
+            </li>
+            <li>
+                <Link to="/login">ログイン</Link>
+            </li>
+        </ul>
+    </header>
+    )
+
+    if (isLoading) return <div className="loader"></div>
 
     const title: string = "hello word!!";
     return (
         <BrowserRouter>
-            <header className="global-head">
-                <ul>
-                    <li>
-                        <Link to="/">ホーム</Link>
-                    </li>
-                    <li>
-                        <Link to="/calendar">カレンダー</Link>
-                    </li>
-                    <li>
-                        <Link to="/help">ヘルプ</Link>
-                    </li>
-                    <li>
-                        <Link to="/login">ログイン</Link>
-                    </li>
-                    <li onClick={() => logout.mutate()}>
-                        <span>ログアウト</span>
-                    </li>
-                </ul>
-            </header>
+            { isAuth ? navgation : loginNavgation}
             <Switch>
                 <Route path="/help">
                     <HelpPage />
                 </Route>
-                <Route path="/login">
+                <LoginRoute path="/login">
                     <LoginPage />
-                </Route>
+                </LoginRoute>
                 <Route path="/calendar">
                     <CalendarPage />
                 </Route>
-                <Route path="/">
+                <GuardRoute exact path="/">
                     <PostPage />
-                </Route>
+                </GuardRoute>
+                <Route component={NotFoundPage} />
             </Switch>
         </BrowserRouter>
     );
