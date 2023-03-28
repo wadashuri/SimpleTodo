@@ -4,7 +4,6 @@ import PostPage from "./pages/posts";
 import LoginPage from "./pages/login";
 import NotFoundPage from "./pages/error";
 import HelpPage from "./pages/help";
-import CalendarPage from "./pages/calendar";
 import { useLogout,useUser } from "./queries/AuthQuery";
 import { useAuth } from "./hooks/AuthContext"
 
@@ -32,10 +31,7 @@ const Router = () => {
         <header className="global-head">
         <ul>
             <li>
-                <Link to="/">タスク</Link>
-            </li>
-            <li>
-                <Link to="/calendar">カレンダー</Link>
+                <Link to="/">ホーム</Link>
             </li>
             <li>
                 <Link to="/help">ヘルプ</Link>
@@ -62,7 +58,6 @@ const Router = () => {
 
     if (isLoading) return <div className="loader"></div>
 
-    const title: string = "hello word!!";
     return (
         <BrowserRouter>
             { isAuth ? navgation : loginNavgation}
@@ -73,9 +68,6 @@ const Router = () => {
                 <LoginRoute path="/login">
                     <LoginPage />
                 </LoginRoute>
-                <Route path="/calendar">
-                    <CalendarPage />
-                </Route>
                 <GuardRoute exact path="/">
                     <PostPage />
                 </GuardRoute>

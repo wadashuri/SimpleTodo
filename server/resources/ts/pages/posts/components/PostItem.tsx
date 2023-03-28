@@ -18,7 +18,7 @@ const PostItem: React.VFC<Props> = ({ post }) => {
 
     const [editTitle, setEditTitle] = useState<string | undefined>(undefined);
 
-    const handleInputChange = (e: React.ChangeEvent<HTMLInputElement>) => {
+    const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setEditTitle(e.target.value);
     };
 
@@ -42,22 +42,22 @@ const PostItem: React.VFC<Props> = ({ post }) => {
         });
     };
 
-    const handleOnKey = (e: React.KeyboardEvent<HTMLInputElement>) => {
+    const handleOnKey = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
         if (["Escape", "Tab"].includes(e.key)) {
             setEditTitle(undefined);
         }
     };
+
     const itemInput = () => {
         return (
             <>
                 <form onSubmit={handleUpdate}>
-                    <input
-                        type="text"
-                        className="input"
-                        defaultValue={editTitle}
-                        onChange={handleInputChange}
-                        onKeyDown={handleOnKey}
-                    />
+                <textarea
+                    className="input"
+                    defaultValue={editTitle}
+                    onChange={handleInputChange}
+                    onKeyDown={handleOnKey}
+                />
                 </form>
                 <button className="btn" onClick={handleUpdate}>
                     更新

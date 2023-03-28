@@ -11,9 +11,9 @@ class PostController extends Controller
     /**
      * 投稿一覧
      */
-    public function index()
+    public function index(Request $request)
     {
-        return auth()->user()->posts()->latest()->get();
+        return auth()->user()->posts()->searchCreatedAt($request)->latest()->get();
     }
 
     /**
