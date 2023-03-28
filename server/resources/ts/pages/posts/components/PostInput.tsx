@@ -13,8 +13,7 @@ const PostInput: React.VFC = () => {
     return (
         <form className="input-form" onSubmit={handleSubmit}>
             <div className="inner">
-                <input
-                    type="text"
+                <textarea
                     className="input"
                     placeholder="TODOを入力してください。"
                     value={title}

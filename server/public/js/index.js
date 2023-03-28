@@ -2862,8 +2862,7 @@ var PostInput = function PostInput() {
     onSubmit: handleSubmit
   }, react_1["default"].createElement("div", {
     className: "inner"
-  }, react_1["default"].createElement("input", {
-    type: "text",
+  }, react_1["default"].createElement("textarea", {
     className: "input",
     placeholder: "TODO\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
     value: title,
