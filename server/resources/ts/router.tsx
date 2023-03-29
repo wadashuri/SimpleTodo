@@ -1,4 +1,5 @@
 import React, { useEffect } from "react";
+import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
 import { BrowserRouter, Switch, Route, Link,RouteProps ,Redirect} from "react-router-dom";
 import PostPage from "./pages/posts";
 import LoginPage from "./pages/login";
@@ -28,32 +29,46 @@ const Router = () => {
    }
 
     const navgation = (
-        <header className="global-head">
-        <ul>
-            <li>
-                <Link to="/">ホーム</Link>
-            </li>
-            <li>
-                <Link to="/help">ヘルプ</Link>
-            </li>
-            <li onClick={() => logout.mutate()}>
-                <span>ログアウト</span>
-            </li>
-        </ul>
-    </header>
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand>
+        SimpleToDo
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/">
+            ホーム
+          </Nav.Link>
+          <Nav.Link as={Link} to="/help">
+            ヘルプ
+          </Nav.Link>
+          <NavDropdown title="メニュー">
+            <NavDropdown.Item onClick={() => logout.mutate()}>
+              ログアウト
+            </NavDropdown.Item>
+          </NavDropdown>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
     )
 
     const loginNavgation = (
-        <header className="global-head">
-        <ul>
-            <li>
-                <Link to="/help">ヘルプ</Link>
-            </li>
-            <li>
-                <Link to="/login">ログイン</Link>
-            </li>
-        </ul>
-    </header>
+    <Navbar bg="dark" variant="dark" expand="lg">
+      <Navbar.Brand>
+        SimpleToDo
+      </Navbar.Brand>
+      <Navbar.Toggle aria-controls="basic-navbar-nav" />
+      <Navbar.Collapse id="basic-navbar-nav">
+        <Nav className="ml-auto">
+          <Nav.Link as={Link} to="/help">
+            ヘルプ
+          </Nav.Link>
+          <Nav.Link as={Link} to="/login">
+            ログイン
+          </Nav.Link>
+        </Nav>
+      </Navbar.Collapse>
+    </Navbar>
     )
 
     if (isLoading) return <div className="loader"></div>
