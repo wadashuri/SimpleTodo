@@ -1,5 +1,6 @@
 import React, { useState } from "react";
 import { useLogin } from "../../queries/AuthQuery"
+import { Button, Form } from "react-bootstrap";
 const LoginPage: React.VFC = () => {
     const login = useLogin();
     const [email,setEmail] = useState('admin@example.com')
@@ -10,38 +11,31 @@ const LoginPage: React.VFC = () => {
         login.mutate({ email,password })
     }
     return (
-        <>
-            <div className="login-page">
-                <div className="login-panel">
-                    <form onSubmit={handleLogin}>
-                        <div className="input-group">
-                            <label>メールアドレス</label>
-                            <input 
-                            type="email" 
-                            className="input"
-                            value={email}
-                            onChange={e => setEmail(e.target.value)}
-                            />
-                        </div>
-                        <div className="input-group">
-                            <label>パスワード</label>
-                            <input 
-                            type="password" 
-                            className="input"
-                            value={password}
-                            onChange={e => setPassword(e.target.value)} 
-                            />
-                        </div>
-                        <button type="submit" className="btn">
-                            ログイン
-                        </button>
-                    </form>
-                </div>
-                <div className="links">
-                    <a href="#">ヘルプ</a>
-                </div>
-            </div>
-        </>
+        <div className="login-page">
+        <div className="login-panel">
+          <Form onSubmit={handleLogin}>
+            <Form.Group controlId="email">
+              <Form.Label>メールアドレス</Form.Label>
+              <Form.Control
+                type="email"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
+              />
+            </Form.Group>
+            <Form.Group controlId="password">
+              <Form.Label>パスワード</Form.Label>
+              <Form.Control
+                type="password"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
+              />
+            </Form.Group>
+            <Button variant="primary" type="submit">
+              ログイン
+            </Button>
+          </Form>
+        </div>
+      </div>
     );
 };
 

@@ -9457,10 +9457,14 @@ Object.defineProperty(exports, "__esModule", ({
 
 var react_1 = __importDefault(__webpack_require__(/*! react */ "./node_modules/react/index.js"));
 
+var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
 var HelpPage = function HelpPage() {
-  return react_1["default"].createElement("div", {
-    className: 'align-center'
-  }, react_1["default"].createElement("h1", null, "\u30D8\u30EB\u30D7"), react_1["default"].createElement("p", null, "\u4F7F\u3044\u65B9\u3092\u89E3\u8AAC\u3057\u307E\u3059"), react_1["default"].createElement("br", null), "\u3053\u306E\u30B5\u30A4\u30C8\u306F\u30ED\u30B0\u30A4\u30F3\u304C\u5FC5\u8981\u3067\u3059");
+  return react_1["default"].createElement(react_bootstrap_1.Container, null, react_1["default"].createElement(react_bootstrap_1.Row, {
+    className: "align-items-center justify-content-center vh-100"
+  }, react_1["default"].createElement(react_bootstrap_1.Col, {
+    className: "text-center"
+  }, react_1["default"].createElement("h1", null, "\u30D8\u30EB\u30D7"), react_1["default"].createElement("p", null, "\u4F7F\u3044\u65B9\u3092\u89E3\u8AAC\u3057\u307E\u3059"), react_1["default"].createElement("p", null, "\u3053\u306E\u30B5\u30A4\u30C8\u306F\u30ED\u30B0\u30A4\u30F3\u304C\u5FC5\u8981\u3067\u3059"))));
 };
 
 exports["default"] = HelpPage;
@@ -9536,6 +9540,8 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var AuthQuery_1 = __webpack_require__(/*! ../../queries/AuthQuery */ "./resources/ts/queries/AuthQuery.ts");
 
+var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
 var LoginPage = function LoginPage() {
   var login = (0, AuthQuery_1.useLogin)();
 
@@ -9557,38 +9563,32 @@ var LoginPage = function LoginPage() {
     });
   };
 
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
+  return react_1["default"].createElement("div", {
     className: "login-page"
   }, react_1["default"].createElement("div", {
     className: "login-panel"
-  }, react_1["default"].createElement("form", {
+  }, react_1["default"].createElement(react_bootstrap_1.Form, {
     onSubmit: handleLogin
-  }, react_1["default"].createElement("div", {
-    className: "input-group"
-  }, react_1["default"].createElement("label", null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"), react_1["default"].createElement("input", {
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Group, {
+    controlId: "email"
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Label, null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"), react_1["default"].createElement(react_bootstrap_1.Form.Control, {
     type: "email",
-    className: "input",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
     }
-  })), react_1["default"].createElement("div", {
-    className: "input-group"
-  }, react_1["default"].createElement("label", null, "\u30D1\u30B9\u30EF\u30FC\u30C9"), react_1["default"].createElement("input", {
+  })), react_1["default"].createElement(react_bootstrap_1.Form.Group, {
+    controlId: "password"
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Label, null, "\u30D1\u30B9\u30EF\u30FC\u30C9"), react_1["default"].createElement(react_bootstrap_1.Form.Control, {
     type: "password",
-    className: "input",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
-  })), react_1["default"].createElement("button", {
-    type: "submit",
-    className: "btn"
-  }, "\u30ED\u30B0\u30A4\u30F3"))), react_1["default"].createElement("div", {
-    className: "links"
-  }, react_1["default"].createElement("a", {
-    href: "#"
-  }, "\u30D8\u30EB\u30D7"))));
+  })), react_1["default"].createElement(react_bootstrap_1.Button, {
+    variant: "primary",
+    type: "submit"
+  }, "\u30ED\u30B0\u30A4\u30F3"))));
 };
 
 exports["default"] = LoginPage;
@@ -9664,6 +9664,8 @@ var react_1 = __importStar(__webpack_require__(/*! react */ "./node_modules/reac
 
 var PostQuery_1 = __webpack_require__(/*! ../../../queries/PostQuery */ "./resources/ts/queries/PostQuery.ts");
 
+var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
 var PostInput = function PostInput() {
   var _ref = (0, react_1.useState)(""),
       _ref2 = _slicedToArray(_ref, 2),
@@ -9678,20 +9680,28 @@ var PostInput = function PostInput() {
     setTitle('');
   };
 
-  return react_1["default"].createElement("form", {
+  return react_1["default"].createElement(react_bootstrap_1.Form, {
     className: "input-form",
     onSubmit: handleSubmit
   }, react_1["default"].createElement("div", {
-    className: "inner"
-  }, react_1["default"].createElement("textarea", {
-    className: "input",
+    className: "d-flex justify-content-center align-items-center gap-2"
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Group, {
+    controlId: "formTitle",
+    className: "mr-2"
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Control, {
+    as: "textarea",
     placeholder: "TODO\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
     value: title,
     onChange: function onChange(e) {
       return setTitle(e.target.value);
+    },
+    style: {
+      width: "400px",
+      resize: "none"
     }
-  }), react_1["default"].createElement("button", {
-    className: "btn is-primary"
+  })), react_1["default"].createElement(react_bootstrap_1.Button, {
+    variant: "primary",
+    type: "submit"
   }, "\u8FFD\u52A0")));
 };
 
@@ -9770,6 +9780,8 @@ var PostQuery_1 = __webpack_require__(/*! ../../../queries/PostQuery */ "./resou
 
 var react_toastify_1 = __webpack_require__(/*! react-toastify */ "./node_modules/react-toastify/dist/react-toastify.js");
 
+var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
 var PostItem = function PostItem(_ref) {
   var post = _ref.post;
   var updateDonePost = (0, PostQuery_1.useUpdateDonePost)();
@@ -9812,27 +9824,31 @@ var PostItem = function PostItem(_ref) {
   };
 
   var itemInput = function itemInput() {
-    return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("form", {
-      onSubmit: handleUpdate
-    }, react_1["default"].createElement("textarea", {
-      className: "input",
+    return react_1["default"].createElement(react_bootstrap_1.Form, {
+      onSubmit: handleUpdate,
+      className: "d-flex justify-content-center align-items-center"
+    }, react_1["default"].createElement(react_bootstrap_1.Form.Control, {
+      as: "textarea",
       defaultValue: editTitle,
       onChange: handleInputChange,
-      onKeyDown: handleOnKey
-    })), react_1["default"].createElement("button", {
-      className: "btn",
-      onClick: handleUpdate
+      onKeyDown: handleOnKey,
+      className: "my-2"
+    }), react_1["default"].createElement(react_bootstrap_1.Button, {
+      type: "submit",
+      variant: "primary",
+      className: "my-2"
     }, "\u66F4\u65B0"));
   };
 
   var itemText = function itemText() {
     return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement("div", {
       onClick: handleToggleEdit
-    }, react_1["default"].createElement("span", null, post.title)), react_1["default"].createElement("button", {
+    }, react_1["default"].createElement("span", null, post.title)), react_1["default"].createElement(react_bootstrap_1.Button, {
       className: "btn is-delete",
       onClick: function onClick() {
         return deletePost.mutate(post.id);
-      }
+      },
+      variant: "danger"
     }, "\u524A\u9664"));
   };
 
@@ -9840,13 +9856,24 @@ var PostItem = function PostItem(_ref) {
     className: post.is_done ? "done" : ""
   }, react_1["default"].createElement("label", {
     className: "checkbox-label"
-  }, react_1["default"].createElement("input", {
-    type: "checkbox",
-    className: "checkbox-input",
+  }, react_1["default"].createElement(react_bootstrap_1.Form.Check, {
+    type: 'checkbox',
     onClick: function onClick() {
       return updateDonePost.mutate(post);
-    }
-  })), editTitle === undefined ? itemText() : itemInput());
+    },
+    checked: post.is_done
+  })), editTitle === undefined ? itemText() : itemInput()); //   return (
+  //     <li className={post.is_done ? "done" : ""}>
+  //         <label className="checkbox-label">
+  //             <input
+  //                 type="checkbox"
+  //                 className="checkbox-input"
+  //                 onClick={() => updateDonePost.mutate(post)}
+  //             />
+  //         </label>
+  //         {editTitle === undefined ? itemText() : itemInput()}
+  //     </li>
+  // );
 };
 
 exports["default"] = PostItem;
@@ -9938,8 +9965,10 @@ var PostInput_1 = __importDefault(__webpack_require__(/*! ./components/PostInput
 
 var PostList_1 = __importDefault(__webpack_require__(/*! ./components/PostList */ "./resources/ts/pages/posts/components/PostList.tsx"));
 
+var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modules/react-bootstrap/esm/index.js");
+
 var PostPage = function PostPage() {
-  return react_1["default"].createElement(react_1["default"].Fragment, null, react_1["default"].createElement(PostInput_1["default"], null), react_1["default"].createElement(PostList_1["default"], null));
+  return react_1["default"].createElement(react_bootstrap_1.Container, null, react_1["default"].createElement(PostInput_1["default"], null), react_1["default"].createElement(PostList_1["default"], null));
 };
 
 exports["default"] = PostPage;
@@ -61406,7 +61435,7 @@ function invariant(condition, message) {
 /***/ ((module) => {
 
 "use strict";
-module.exports = JSON.parse('{"_from":"axios@^0.21","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"range","registry":true,"raw":"axios@^0.21","name":"axios","escapedName":"axios","rawSpec":"^0.21","saveSpec":null,"fetchSpec":"^0.21"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_shasum":"c67b90dc0568e5c1cf2b0b858c43ba28e2eda575","_spec":"axios@^0.21","_where":"/app","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundleDependencies":false,"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"deprecated":false,"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
+module.exports = JSON.parse('{"_args":[["axios@0.21.4","/app"]],"_development":true,"_from":"axios@0.21.4","_id":"axios@0.21.4","_inBundle":false,"_integrity":"sha512-ut5vewkiu8jjGBdqpM44XxjuCjq9LAKeHVmoVfHVzy8eHgxxq8SbAVQNovDA8mVi05kP0Ea/n/UzcSHcTJQfNg==","_location":"/axios","_phantomChildren":{},"_requested":{"type":"version","registry":true,"raw":"axios@0.21.4","name":"axios","escapedName":"axios","rawSpec":"0.21.4","saveSpec":null,"fetchSpec":"0.21.4"},"_requiredBy":["#DEV:/"],"_resolved":"https://registry.npmjs.org/axios/-/axios-0.21.4.tgz","_spec":"0.21.4","_where":"/app","author":{"name":"Matt Zabriskie"},"browser":{"./lib/adapters/http.js":"./lib/adapters/xhr.js"},"bugs":{"url":"https://github.com/axios/axios/issues"},"bundlesize":[{"path":"./dist/axios.min.js","threshold":"5kB"}],"dependencies":{"follow-redirects":"^1.14.0"},"description":"Promise based HTTP client for the browser and node.js","devDependencies":{"coveralls":"^3.0.0","es6-promise":"^4.2.4","grunt":"^1.3.0","grunt-banner":"^0.6.0","grunt-cli":"^1.2.0","grunt-contrib-clean":"^1.1.0","grunt-contrib-watch":"^1.0.0","grunt-eslint":"^23.0.0","grunt-karma":"^4.0.0","grunt-mocha-test":"^0.13.3","grunt-ts":"^6.0.0-beta.19","grunt-webpack":"^4.0.2","istanbul-instrumenter-loader":"^1.0.0","jasmine-core":"^2.4.1","karma":"^6.3.2","karma-chrome-launcher":"^3.1.0","karma-firefox-launcher":"^2.1.0","karma-jasmine":"^1.1.1","karma-jasmine-ajax":"^0.1.13","karma-safari-launcher":"^1.0.0","karma-sauce-launcher":"^4.3.6","karma-sinon":"^1.0.5","karma-sourcemap-loader":"^0.3.8","karma-webpack":"^4.0.2","load-grunt-tasks":"^3.5.2","minimist":"^1.2.0","mocha":"^8.2.1","sinon":"^4.5.0","terser-webpack-plugin":"^4.2.3","typescript":"^4.0.5","url-search-params":"^0.10.0","webpack":"^4.44.2","webpack-dev-server":"^3.11.0"},"homepage":"https://axios-http.com","jsdelivr":"dist/axios.min.js","keywords":["xhr","http","ajax","promise","node"],"license":"MIT","main":"index.js","name":"axios","repository":{"type":"git","url":"git+https://github.com/axios/axios.git"},"scripts":{"build":"NODE_ENV=production grunt build","coveralls":"cat coverage/lcov.info | ./node_modules/coveralls/bin/coveralls.js","examples":"node ./examples/server.js","fix":"eslint --fix lib/**/*.js","postversion":"git push && git push --tags","preversion":"npm test","start":"node ./sandbox/server.js","test":"grunt test","version":"npm run build && grunt version && git add -A dist && git add CHANGELOG.md bower.json package.json"},"typings":"./index.d.ts","unpkg":"dist/axios.min.js","version":"0.21.4"}');
 
 /***/ })
 

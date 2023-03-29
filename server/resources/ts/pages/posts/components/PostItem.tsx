@@ -6,6 +6,7 @@ import {
     useDeletePost,
 } from "../../../queries/PostQuery";
 import { toast } from "react-toastify";
+import { Form, Button, ListGroup } from "react-bootstrap";
 
 type Props = {
     post: Post;
@@ -26,7 +27,11 @@ const PostItem: React.VFC<Props> = ({ post }) => {
         setEditTitle(post.title);
     };
 
-    const handleUpdate = (e: React.FormEvent<HTMLFormElement>|React.MouseEvent<HTMLButtonElement>) => {
+    const handleUpdate = (
+        e:
+            | React.FormEvent<HTMLFormElement>
+            | React.MouseEvent<HTMLButtonElement>
+    ) => {
         e.preventDefault();
 
         if (!editTitle) {
@@ -50,19 +55,21 @@ const PostItem: React.VFC<Props> = ({ post }) => {
 
     const itemInput = () => {
         return (
-            <>
-                <form onSubmit={handleUpdate}>
-                <textarea
-                    className="input"
+            <Form
+                onSubmit={handleUpdate}
+                className="d-flex justify-content-center align-items-center"
+            >
+                <Form.Control
+                    as="textarea"
                     defaultValue={editTitle}
                     onChange={handleInputChange}
                     onKeyDown={handleOnKey}
+                    className="my-2"
                 />
-                </form>
-                <button className="btn" onClick={handleUpdate}>
+                <Button type="submit" variant="primary" className="my-2">
                     更新
-                </button>
-            </>
+                </Button>
+            </Form>
         );
     };
 
@@ -72,7 +79,13 @@ const PostItem: React.VFC<Props> = ({ post }) => {
                 <div onClick={handleToggleEdit}>
                     <span>{post.title}</span>
                 </div>
-                <button className="btn is-delete" onClick={() => deletePost.mutate(post.id)}>削除</button>
+                <Button
+                    className="btn is-delete"
+                    onClick={() => deletePost.mutate(post.id)}
+                    variant="danger"
+                >
+                    削除
+                </Button>
             </>
         );
     };
@@ -80,15 +93,28 @@ const PostItem: React.VFC<Props> = ({ post }) => {
     return (
         <li className={post.is_done ? "done" : ""}>
             <label className="checkbox-label">
-                <input
-                    type="checkbox"
-                    className="checkbox-input"
-                    onClick={() => updateDonePost.mutate(post)}
-                />
-            </label>
-            {editTitle === undefined ? itemText() : itemInput()}
+          <Form.Check
+            type={'checkbox'}
+            onClick={() => updateDonePost.mutate(post)}
+            checked={post.is_done}
+          />
+          </label>
+          {editTitle === undefined ? itemText() : itemInput()}
         </li>
-    );
+      );
+
+    //   return (
+    //     <li className={post.is_done ? "done" : ""}>
+    //         <label className="checkbox-label">
+    //             <input
+    //                 type="checkbox"
+    //                 className="checkbox-input"
+    //                 onClick={() => updateDonePost.mutate(post)}
+    //             />
+    //         </label>
+    //         {editTitle === undefined ? itemText() : itemInput()}
+    //     </li>
+    // );
 };
 
 export default PostItem;
