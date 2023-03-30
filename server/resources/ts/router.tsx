@@ -71,7 +71,9 @@ const Router = () => {
     </Navbar>
     )
 
-    if (isLoading) return <div className="loader"></div>
+    if (isLoading) return <div className="d-flex justify-content-center">
+                            <div className="spinner-border" role="status"></div>
+                          </div>
 
     return (
         <BrowserRouter>
