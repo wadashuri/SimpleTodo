@@ -9832,17 +9832,15 @@ var PostItem = function PostItem(_ref) {
   var itemInput = function itemInput() {
     return react_1["default"].createElement(react_bootstrap_1.Form, {
       onSubmit: handleUpdate,
-      className: "d-flex justify-content-center align-items-center"
+      className: "d-flex align-items-center"
     }, react_1["default"].createElement(react_bootstrap_1.Form.Control, {
       as: "textarea",
       defaultValue: editTitle,
       onChange: handleInputChange,
-      onKeyDown: handleOnKey,
-      className: "my-2"
+      onKeyDown: handleOnKey
     }), react_1["default"].createElement(react_bootstrap_1.Button, {
       type: "submit",
-      variant: "primary",
-      className: "my-2"
+      variant: "primary"
     }, "\u66F4\u65B0"));
   };
 
@@ -9864,7 +9862,7 @@ var PostItem = function PostItem(_ref) {
     className: "checkbox-label"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Check, {
     type: 'checkbox',
-    className: "m-3",
+    className: "m-2",
     onClick: function onClick() {
       return updateDonePost.mutate(post);
     },

@@ -57,16 +57,15 @@ const PostItem: React.VFC<Props> = ({ post }) => {
         return (
             <Form
                 onSubmit={handleUpdate}
-                className="d-flex justify-content-center align-items-center"
+                className="d-flex align-items-center"
             >
                 <Form.Control
                     as="textarea"
                     defaultValue={editTitle}
                     onChange={handleInputChange}
                     onKeyDown={handleOnKey}
-                    className="my-2"
                 />
-                <Button type="submit" variant="primary" className="my-2">
+                <Button type="submit" variant="primary">
                     更新
                 </Button>
             </Form>
@@ -95,7 +94,7 @@ const PostItem: React.VFC<Props> = ({ post }) => {
             <label className="checkbox-label">
           <Form.Check
             type={'checkbox'}
-            className="m-3"
+            className="m-2"
             onClick={() => updateDonePost.mutate(post)}
             checked={post.is_done}
           />
