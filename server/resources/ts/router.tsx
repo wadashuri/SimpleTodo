@@ -1,5 +1,5 @@
 import React, { useEffect } from "react";
-import { Navbar, Nav, NavDropdown } from 'react-bootstrap';
+import { Navbar, Nav, NavDropdown, Spinner } from "react-bootstrap";
 import { BrowserRouter, Switch, Route, Link,RouteProps ,Redirect} from "react-router-dom";
 import PostPage from "./pages/posts";
 import LoginPage from "./pages/login";
@@ -71,9 +71,18 @@ const Router = () => {
     </Navbar>
     )
 
-    if (isLoading) return <div className="d-flex justify-content-center">
-                            <div className="spinner-border" role="status"></div>
-                          </div>
+if (isLoading) {
+    return (
+        <div
+            className="d-flex justify-content-center align-items-center"
+            style={{ height: "100vh" }}
+        >
+            <Spinner animation="border" role="status">
+                <span className="visually-hidden">Loading...</span>
+            </Spinner>
+        </div>
+    );
+}
 
     return (
         <BrowserRouter>

@@ -10377,12 +10377,21 @@ var Router = function Router() {
     as: react_router_dom_1.Link,
     to: "/login"
   }, "\u30ED\u30B0\u30A4\u30F3"))));
-  if (isLoading) return react_1["default"].createElement("div", {
-    className: "d-flex justify-content-center"
-  }, react_1["default"].createElement("div", {
-    className: "spinner-border",
-    role: "status"
-  }));
+
+  if (isLoading) {
+    return react_1["default"].createElement("div", {
+      className: "d-flex justify-content-center align-items-center",
+      style: {
+        height: "100vh"
+      }
+    }, react_1["default"].createElement(react_bootstrap_1.Spinner, {
+      animation: "border",
+      role: "status"
+    }, react_1["default"].createElement("span", {
+      className: "visually-hidden"
+    }, "Loading...")));
+  }
+
   return react_1["default"].createElement(react_router_dom_1.BrowserRouter, null, isAuth ? navgation : loginNavgation, react_1["default"].createElement(react_router_dom_1.Switch, null, react_1["default"].createElement(react_router_dom_1.Route, {
     path: "/help"
   }, react_1["default"].createElement(help_1["default"], null)), react_1["default"].createElement(LoginRoute, {
