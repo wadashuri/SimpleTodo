@@ -95,6 +95,7 @@ const PostItem: React.VFC<Props> = ({ post }) => {
             <label className="checkbox-label">
           <Form.Check
             type={'checkbox'}
+            className="m-3"
             onClick={() => updateDonePost.mutate(post)}
             checked={post.is_done}
           />
@@ -102,19 +103,6 @@ const PostItem: React.VFC<Props> = ({ post }) => {
           {editTitle === undefined ? itemText() : itemInput()}
         </li>
       );
-
-    //   return (
-    //     <li className={post.is_done ? "done" : ""}>
-    //         <label className="checkbox-label">
-    //             <input
-    //                 type="checkbox"
-    //                 className="checkbox-input"
-    //                 onClick={() => updateDonePost.mutate(post)}
-    //             />
-    //         </label>
-    //         {editTitle === undefined ? itemText() : itemInput()}
-    //     </li>
-    // );
 };
 
 export default PostItem;

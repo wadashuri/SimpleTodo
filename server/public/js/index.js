@@ -9545,12 +9545,12 @@ var react_bootstrap_1 = __webpack_require__(/*! react-bootstrap */ "./node_modul
 var LoginPage = function LoginPage() {
   var login = (0, AuthQuery_1.useLogin)();
 
-  var _ref = (0, react_1.useState)('admin@example.com'),
+  var _ref = (0, react_1.useState)("admin@example.com"),
       _ref2 = _slicedToArray(_ref, 2),
       email = _ref2[0],
       setEmail = _ref2[1];
 
-  var _ref3 = (0, react_1.useState)('admin'),
+  var _ref3 = (0, react_1.useState)("admin"),
       _ref4 = _slicedToArray(_ref3, 2),
       password = _ref4[0],
       setPassword = _ref4[1];
@@ -9563,16 +9563,20 @@ var LoginPage = function LoginPage() {
     });
   };
 
-  return react_1["default"].createElement("div", {
-    className: "login-page"
-  }, react_1["default"].createElement("div", {
-    className: "login-panel"
-  }, react_1["default"].createElement(react_bootstrap_1.Form, {
-    onSubmit: handleLogin
+  return react_1["default"].createElement(react_bootstrap_1.Container, {
+    className: "d-flex justify-content-center align-items-center vh-100"
+  }, react_1["default"].createElement(react_bootstrap_1.Card, {
+    className: "p-4 bg-light"
+  }, react_1["default"].createElement("h2", {
+    className: "text-center mb-4"
+  }, "\u30ED\u30B0\u30A4\u30F3"), react_1["default"].createElement(react_bootstrap_1.Form, {
+    onSubmit: handleLogin,
+    className: "p-4"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Group, {
     controlId: "email"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Label, null, "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9"), react_1["default"].createElement(react_bootstrap_1.Form.Control, {
     type: "email",
+    placeholder: "\u30E1\u30FC\u30EB\u30A2\u30C9\u30EC\u30B9",
     value: email,
     onChange: function onChange(e) {
       return setEmail(e.target.value);
@@ -9581,13 +9585,15 @@ var LoginPage = function LoginPage() {
     controlId: "password"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Label, null, "\u30D1\u30B9\u30EF\u30FC\u30C9"), react_1["default"].createElement(react_bootstrap_1.Form.Control, {
     type: "password",
+    placeholder: "\u30D1\u30B9\u30EF\u30FC\u30C9",
     value: password,
     onChange: function onChange(e) {
       return setPassword(e.target.value);
     }
   })), react_1["default"].createElement(react_bootstrap_1.Button, {
     variant: "primary",
-    type: "submit"
+    type: "submit",
+    className: "btn-block mt-4"
   }, "\u30ED\u30B0\u30A4\u30F3"))));
 };
 
@@ -9684,10 +9690,10 @@ var PostInput = function PostInput() {
     className: "input-form",
     onSubmit: handleSubmit
   }, react_1["default"].createElement("div", {
-    className: "d-flex justify-content-center align-items-center gap-2"
+    className: "d-flex justify-content-center align-items-center m-4 gap-4"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Group, {
     controlId: "formTitle",
-    className: "mr-2"
+    className: "mr-2 flex-grow-1"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Control, {
     as: "textarea",
     placeholder: "TODO\u3092\u5165\u529B\u3057\u3066\u304F\u3060\u3055\u3044\u3002",
@@ -9696,9 +9702,9 @@ var PostInput = function PostInput() {
       return setTitle(e.target.value);
     },
     style: {
-      width: "400px",
       resize: "none"
-    }
+    },
+    className: "w-100"
   })), react_1["default"].createElement(react_bootstrap_1.Button, {
     variant: "primary",
     type: "submit"
@@ -9858,22 +9864,12 @@ var PostItem = function PostItem(_ref) {
     className: "checkbox-label"
   }, react_1["default"].createElement(react_bootstrap_1.Form.Check, {
     type: 'checkbox',
+    className: "m-3",
     onClick: function onClick() {
       return updateDonePost.mutate(post);
     },
     checked: post.is_done
-  })), editTitle === undefined ? itemText() : itemInput()); //   return (
-  //     <li className={post.is_done ? "done" : ""}>
-  //         <label className="checkbox-label">
-  //             <input
-  //                 type="checkbox"
-  //                 className="checkbox-input"
-  //                 onClick={() => updateDonePost.mutate(post)}
-  //             />
-  //         </label>
-  //         {editTitle === undefined ? itemText() : itemInput()}
-  //     </li>
-  // );
+  })), editTitle === undefined ? itemText() : itemInput());
 };
 
 exports["default"] = PostItem;
