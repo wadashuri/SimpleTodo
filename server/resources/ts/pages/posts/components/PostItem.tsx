@@ -1,4 +1,4 @@
-import React, { useState } from "react";
+import React, { useState,useEffect } from "react";
 import { Post } from "../../../types/Post";
 import {
     useUpdateDonePost,
@@ -12,12 +12,26 @@ type Props = {
     post: Post;
 };
 
+
 const PostItem: React.VFC<Props> = ({ post }) => {
     const updateDonePost = useUpdateDonePost();
     const updatePost = useUpdatePost();
     const deletePost = useDeletePost();
 
     const [editTitle, setEditTitle] = useState<string | undefined>(undefined);
+
+    useEffect(() => {
+        const handleClickOutside = (event: MouseEvent) => {
+          const target = event.target as HTMLElement;
+          if (!target.closest('.inner')) {
+            setEditTitle(undefined);
+          }
+        };
+        window.addEventListener('mousedown', handleClickOutside);
+        return () => {
+          window.removeEventListener('mousedown', handleClickOutside);
+        };
+      }, []);
 
     const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
         setEditTitle(e.target.value);
@@ -47,12 +61,6 @@ const PostItem: React.VFC<Props> = ({ post }) => {
         });
     };
 
-    const handleOnKey = (e: React.KeyboardEvent<HTMLTextAreaElement>) => {
-        if (["Escape", "Tab"].includes(e.key)) {
-            setEditTitle(undefined);
-        }
-    };
-
     const itemInput = () => {
         return (
             <Form
@@ -63,7 +71,6 @@ const PostItem: React.VFC<Props> = ({ post }) => {
                     as="textarea"
                     defaultValue={editTitle}
                     onChange={handleInputChange}
-                    onKeyDown={handleOnKey}
                 />
                 <Button type="submit" variant="primary">
                     更新

@@ -9799,6 +9799,21 @@ var PostItem = function PostItem(_ref) {
       editTitle = _ref3[0],
       setEditTitle = _ref3[1];
 
+  (0, react_1.useEffect)(function () {
+    var handleClickOutside = function handleClickOutside(event) {
+      var target = event.target;
+
+      if (!target.closest('.inner')) {
+        setEditTitle(undefined);
+      }
+    };
+
+    window.addEventListener('mousedown', handleClickOutside);
+    return function () {
+      window.removeEventListener('mousedown', handleClickOutside);
+    };
+  }, []);
+
   var handleInputChange = function handleInputChange(e) {
     setEditTitle(e.target.value);
   };
@@ -9823,12 +9838,6 @@ var PostItem = function PostItem(_ref) {
     });
   };
 
-  var handleOnKey = function handleOnKey(e) {
-    if (["Escape", "Tab"].includes(e.key)) {
-      setEditTitle(undefined);
-    }
-  };
-
   var itemInput = function itemInput() {
     return react_1["default"].createElement(react_bootstrap_1.Form, {
       onSubmit: handleUpdate,
@@ -9836,8 +9845,7 @@ var PostItem = function PostItem(_ref) {
     }, react_1["default"].createElement(react_bootstrap_1.Form.Control, {
       as: "textarea",
       defaultValue: editTitle,
-      onChange: handleInputChange,
-      onKeyDown: handleOnKey
+      onChange: handleInputChange
     }), react_1["default"].createElement(react_bootstrap_1.Button, {
       type: "submit",
       variant: "primary"
@@ -9906,11 +9914,8 @@ var PostList = function PostList() {
 
   if (status === 'loading') {
     return react_1["default"].createElement("div", {
-      className: "d-flex justify-content-center"
-    }, react_1["default"].createElement("div", {
-      className: "spinner-border",
-      role: "status"
-    }));
+      className: "loader"
+    });
   } else if (status === "error") {
     return react_1["default"].createElement("div", {
       className: "align-center"
