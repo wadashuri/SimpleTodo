@@ -3,8 +3,8 @@ import { useLogin } from "../../queries/AuthQuery";
 import { Button, Form, Container, Card } from "react-bootstrap";
 const LoginPage: React.VFC = () => {
     const login = useLogin();
-    const [email, setEmail] = useState("admin@example.com");
-    const [password, setPassword] = useState("admin");
+    const [email, setEmail] = useState("user1@example.com");
+    const [password, setPassword] = useState("user1");
 
     const handleLogin = (e: React.FormEvent<HTMLFormElement>) => {
         e.preventDefault();

@@ -20,7 +20,7 @@ Route::post('login', [LoginController::class,'login']);
 Route::post('logout', [LoginController::class,'logout']);
 
 // APIToken取得仮コード
-Route::post("login",[LoginController::class,'index']);
+Route::post("login/index",[LoginController::class,'index']);
 
 Route::group([
     'middleware' => 'auth:sanctum'
