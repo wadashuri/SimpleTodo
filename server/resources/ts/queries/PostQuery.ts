@@ -3,8 +3,8 @@ import { useQuery, useMutation, useQueryClient } from "react-query";
 import { toast } from "react-toastify";
 import { AxiosError } from "axios";
 
-const usePosts = () => {
-    return useQuery("posts", () => api.getPosts());
+const usePosts = (title: string) => {
+    return useQuery("posts", () => api.getPosts(title));
 };
 
 const useUpdateDonePost = () => {

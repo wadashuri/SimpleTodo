@@ -32,12 +32,15 @@ class Post extends Model
     /**
      * スコープ設定
      */
-    public function scopeSearchCreatedAt($query, $request)
+    public function scopeSearchTodo($query, $request)
     {
-        $createdAt = $request->created_at ?? date("Y-m-d");
+      $query->when($request->title, function ($q) use ($request) {
+        $q->where('title', $request->title);
+      });
+        // $createdAt = $request->created_at ?? date("Y-m-d");
     
-        $query->when($createdAt, function ($q) use ($createdAt) {
-            $q->whereDate('created_at', $createdAt);
-        });
+        // $query->when($createdAt, function ($q) use ($createdAt) {
+        //     $q->whereDate('created_at', $createdAt);
+        // })
     }
 }

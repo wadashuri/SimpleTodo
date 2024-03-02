@@ -13,7 +13,7 @@ class PostController extends Controller
      */
     public function index(Request $request)
     {
-        return auth()->user()->posts()->searchCreatedAt($request)->latest()->get();
+        return auth()->user()->posts()->searchtodo($request)->latest()->get();
     }
 
     /**

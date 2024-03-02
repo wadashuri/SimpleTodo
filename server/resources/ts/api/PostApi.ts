@@ -1,8 +1,10 @@
 import axios from "axios";
 import { Post } from "../types/Post";
 
-const getPosts = async () => {
-    const { data } = await axios.get<Post[]>("api/posts");
+const getPosts = async (title: string) => {
+    const { data } = await axios.get<Post[]>(`api/posts`, {
+        params: { title: title }, // タイトルをクエリパラメータとして渡す
+    });
     return data;
 };
 
